@@ -440,7 +440,7 @@ function endMiniGame(isWin) {
         triggerSurprisePop(
             " <b>SELAMAT! KAMU MENANG!</b> <br><br>" +
             "Semoga di usia yang baru ini semua impian besarmu tercapai, diberikan kesehatan, keberkahan rezeki, dan kelancaran dalam setiap langkah perjuanganmu Daffa!",
-            "kejutan-bola.jpeg",
+            "kejutanbola.jpeg",
             true
         );
     } else {
