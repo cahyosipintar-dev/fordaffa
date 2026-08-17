@@ -628,5 +628,3 @@ function exitWebsite() {
         if (subtext) subtext.innerText = 'Tab ini boleh ditutup manual ya, terima kasih sudah mampir!';
     }, 300);
 }
-    }, 300);
-}
