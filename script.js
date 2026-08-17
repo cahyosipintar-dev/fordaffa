@@ -86,8 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Jalankan sekali saat halaman dimuat
     checkReveal();
 
-    // 5. Countdown Timer
-    const nextBirthday = new Date("September 17, 2026 00:00:00").getTime();
+    // 5. Countdown Timer (otomatis lanjut ke tahun berikutnya setiap tahun)
+    function getNextBirthdayTimestamp() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let target = new Date(`September 17, ${currentYear} 00:00:00`);
+
+        // Kalau tanggal 17 September tahun ini sudah lewat, majukan ke tahun depan
+        if (target.getTime() <= now.getTime()) {
+            target = new Date(`September 17, ${currentYear + 1} 00:00:00`);
+        }
+        return target.getTime();
+    }
+
+    const nextBirthday = getNextBirthdayTimestamp();
     
     setInterval(() => {
         const now = new Date().getTime();
@@ -428,7 +440,7 @@ function endMiniGame(isWin) {
         triggerSurprisePop(
             " <b>SELAMAT! KAMU MENANG!</b> <br><br>" +
             "Semoga di usia yang baru ini semua impian besarmu tercapai, diberikan kesehatan, keberkahan rezeki, dan kelancaran dalam setiap langkah perjuanganmu Daffa!",
-            "kejutanbola.jpeg",
+            "kejutan-bola.jpeg",
             true
         );
     } else {
@@ -602,10 +614,19 @@ function startExitSequence() {
 
 function exitWebsite() {
     window.close();
-    // Jika tab gagal ditutup otomatis (dibatasi browser), biarkan halaman tetap terbuka
-    // dan sembunyikan modal supaya penerima tidak melihat halaman kosong.
+    // Kebanyakan browser tidak mengizinkan JS menutup tab yang dibuka manual oleh user.
+    // Jika penutupan otomatis gagal, tampilkan pesan penutup yang ramah alih-alih halaman kosong.
     setTimeout(() => {
-        const exitModal = document.getElementById('exitModal');
-        if (exitModal) exitModal.style.display = 'none';
+        const icon = document.getElementById('exitIcon');
+        const message = document.getElementById('exitMessage');
+        const circle = document.getElementById('exitCountdownCircle');
+        const subtext = document.getElementById('exitSubtext');
+
+        if (icon) icon.innerText = '💛';
+        if (message) message.style.display = 'none';
+        if (circle) circle.style.display = 'none';
+        if (subtext) subtext.innerText = 'Tab ini boleh ditutup manual ya, terima kasih sudah mampir!';
+    }, 300);
+}
     }, 300);
 }
