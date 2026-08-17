@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Daffa</title>
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOADING SCREEN / PRELOADER -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="gift-box" onclick="startExperience()">
+                <div class="gift-ribbon"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-body">🎁</div>
+            </div>
+            <h2 class="loading-title">Kejutan Spesial Menunggumu!</h2>
+            <button class="btn-start" onclick="startExperience()">
+                <i class="fa-solid fa-gift"></i> Buka Kejutan
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO BGM & SFX -->
+    <audio id="bgMusic" src="SFXHBD.mp3" loop></audio>
+    <audio id="popSound" src="popup.mp3" preload="auto"></audio>
+
+    <div class="mobile-container">
+
+       <!-- SECTION 1: HERO & CAKE -->
+        <div class="section active">
+            <p id="timeGreeting" class="time-greeting">Selamat Datang</p>
+
+            <!-- KUE ULANG TAHUN INTERAKTIF -->
+            <div class="cake-container" onclick="blowOutCandle()">
+                <svg class="birthday-cake" viewBox="0 0 200 200">
+                    <ellipse cx="100" cy="170" rx="75" ry="15" fill="#f3e5ab" opacity="0.6"/>
+                    <ellipse cx="100" cy="165" rx="70" ry="12" fill="#d4af37"/>
+                    
+                    <path d="M 40 135 L 40 160 Q 100 175 160 160 L 160 135 Z" fill="#2c0b0e"/>
+                    <rect x="40" y="130" width="120" height="10" rx="3" fill="#d4af37"/>
+                    
+                    <path d="M 50 95 L 50 130 Q 100 145 150 130 L 150 95 Z" fill="#3d0d12"/>
+                    <path d="M 50 95 Q 60 110 70 95 Q 80 110 90 95 Q 100 110 110 95 Q 120 110 130 95 L 150 90 L 50 90 Z" fill="#f3e5ab"/>
+                    
+                    <rect x="95" y="60" width="10" height="30" rx="2" fill="#f3e5ab" stroke="#d4af37" stroke-width="1"/>
+                    <line x1="100" y1="55" x2="100" y2="60" stroke="#333" stroke-width="2"/>
+                    
+                    <g id="candleFlame" class="flame-group">
+                        <path d="M 100 35 Q 108 48 100 55 Q 92 48 100 35 Z" fill="#ff9900"/>
+                        <path d="M 100 40 Q 104 48 100 53 Q 96 48 100 40 Z" fill="#ffcc00"/>
+                    </g>
+                    
+                    <g id="candleSmoke" class="smoke-group" style="display: none;">
+                        <circle cx="100" cy="45" r="3" fill="#aaa" opacity="0.6"/>
+                        <circle cx="98" cy="35" r="4" fill="#888" opacity="0.4"/>
+                        <circle cx="102" cy="25" r="5" fill="#666" opacity="0.2"/>
+                    </g>
+                </svg>
+                <p class="cake-hint"> Pencet di lilinnya ya! </p>
+            </div>
+
+            <h1>SELAMAT ULANG TAHUN DAFFA</h1>
+
+            <!-- Slide Foto Section Hero -->
+            <div class="hero-slider-wrapper">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="hero-slide" onclick="triggerSurprisePop('Momen Emas! Semoga setiap impianmu bersinar seperti kenangan ini ✨')">
+                        <img src="sectionhero1.jpg" alt="Slide Hero 1">
+                    </div>
+                    <div class="hero-slide" onclick="triggerSurprisePop('Langkah Pertama! Setiap perjuangan membawa hasil manis 🌟')">
+                        <img src="sectionhero2.jpg" alt="Slide Hero 2">
+                    </div>
+                    <div class="hero-slide" onclick="triggerSurprisePop('SORRYY WKWKWK 🤪')">
+                        <img src="sectionhero3.jpg" alt="Slide Hero 3">
+                    </div>
+                </div>
+                <button class="slider-btn prev" onclick="moveHeroSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-btn next" onclick="moveHeroSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots" id="heroDots"></div>
+            
+            <button id="openWishBtn" class="btn-primary" style="margin-top: 15px;">
+                <i class="fa-solid fa-envelope-open"></i> Buka Surat Ucapan
+            </button>
+
+            <p class="scroll-hint">SCROLL KE BAWAH ▼</p>
+        </div>
+
+        <!-- SECTION 2: PROFIL & COUNTDOWN -->
+        <div class="section reveal">
+            <h2>HAPPY BIRTHDAY</h2>
+            
+            <div class="photo-frame" onclick="triggerSurprisePop('Pribadi Tangguh! Teruslah menginspirasi orang-orang di sekitarmu ')">
+                <img src="profilandcountdown.jpg" alt="Foto Utama">
+            </div>
+
+            <h1 class="target-name">DAFFA ARGHANA WIBOWO</h1>
+            <p class="sub-text-jawa">17 September 2026</p>
+
+            <div class="countdown-container">
+                <p class="countdown-title">Menuju Hari Spesial Berikutnya:</p>
+                <div class="timer">
+                    <div class="time-box"><span id="days">00</span><small>Hari</small></div>
+                    <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+                    <div class="time-box"><span id="minutes">00</span><small>Menit</small></div>
+                    <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+                </div>
+            </div>
+
+            <p class="greeting-text">
+                Selamat tambah umur! Semoga sehat terus, makin sukses, rezeki makin ngalir, dan hidup makin penuh berkah serta bahagia, Daffa.
+            </p>
+        </div>
+
+        <!-- SECTION KEJUTAN INTERAKTIF & MINI GAME -->
+        <div class="section reveal">
+            <h2>MINI GAME KEJUTAN</h2>
+            <p class="sub-text-jawa">Seru seruan Daff!</p>
+            
+            <div class="game-container">
+                <div class="game-stats">
+                    <span>Skor: <strong id="gameScore">0</strong>/30</span>
+                    <span>Waktu: <strong id="gameTimer">40</strong>s</span>
+                </div>
+                
+                <div class="game-board" id="gameBoard">
+                    <div class="game-basket" id="gameBasket">🧺</div>
+                </div>
+
+                <button id="startGameBtn" class="btn-primary" onclick="startMiniGame()" style="margin-top: 10px;">
+                    <i class="fa-solid fa-gamepad"></i> Mulai Game
+                </button>
+            </div>
+        </div>
+
+        <!-- SECTION 3: GALERI POLAROID -->
+        <div class="section reveal">
+            <h2> FOTO </h2>
+            <p class="sub-text-jawa">Momen Kenangan</p>
+
+            <div id="tab-polaroid" class="tab-content active">
+                <div class="polaroid-card">
+                    <div class="polaroid-img" onclick="openLightbox(document.getElementById('polaroidImage').src)">
+                        <img id="polaroidImage" src="" alt="Polaroid">
+                    </div>
+                    <p id="polaroidCaption" class="polaroid-caption"></p>
+                    <div class="polaroid-nav">
+                        <button onclick="prevPolaroid()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+                        <button onclick="nextPolaroid()">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MINI GAME: POP THE SURPRISE BALLOON & WA SENDER -->
+        <div id="wishesSection" class="section reveal">
+            <div class="generator-header">
+                <span class="generator-badge"> Mini Game Interaktif </span>
+                <h3>Pop The Wish Balloon</h3>
+                <p class="sub-text-jawa">Pilih dan letuskan salah satu balon untuk membuka pesan & doa spesial!</p>
+            </div>
+
+            <!-- WADAH BALON MELETUS -->
+            <div class="balloon-game-container">
+                <div class="balloon balloon-1" onclick="popWishBalloon(1, 'Cahyo orang pintar')">
+                    <div class="balloon-string"></div>
+                    <span></span>
+                </div>
+                <div class="balloon balloon-2" onclick="popWishBalloon(2, 'Cahyo orang ganteng')">
+                    <div class="balloon-string"></div>
+                    <span></span>
+                </div>
+                <div class="balloon balloon-3" onclick="popWishBalloon(3, 'Cahyo orang baik')">
+                    <div class="balloon-string"></div>
+                    <span></span>
+                </div>
+                <div class="balloon balloon-4" onclick="popWishBalloon(4, 'Cahyo tidak sombong')">
+                    <div class="balloon-string"></div>
+                    <span></span>
+                </div>
+            </div>
+
+            <p id="balloonHint" class="cake-hint"> Klik pada balon untuk meletuskannya! </p>
+
+            <!-- INPUT FORM & EDITOR -->
+            <div class="greeting-editor">
+                <label for="customGreeting">Hasil Pesan dari Balon / Edit Ucapanmu:</label>
+                <textarea id="customGreeting" rows="4" placeholder="Letuskan salah satu balon di atas untuk menampilkan teks ucapan..."></textarea>
+                
+                <div class="editor-actions">
+                    <button type="button" class="btn-secondary" onclick="copyGreetingText()">
+                        <i class="fa-solid fa-copy"></i> Salin Ucapan
+                    </button>
+                    <button type="button" class="btn-primary" onclick="sendToWhatsApp('6289520912244')">
+                        <i class="fa-brands fa-whatsapp"></i> Kirim WA
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION KEJUTAN PENUTUP: KAPSUL WAKTU -->
+        <div class="section reveal">
+            <h2>KEJUTAN PENUTUP</h2>
+            <p class="sub-text-jawa">Satu hadiah terakhir sebelum kamu menyelesaikan perjalanan web ini </p>
+            
+            <div class="time-capsule-card" onclick="openTimeCapsule()">
+                <div class="capsule-icon" id="capsuleIcon">⏳</div>
+                <h3 id="capsuleTitle">Buka Kapsul Waktu</h3>
+                <p id="capsuleSub">Klik untuk membuka pesan & doa penutup!</p>
+            </div>
+        </div>
+
+        <!-- SECTION 5: FOOTER -->
+        <div class="section footer-section reveal">
+            <button id="shareBtn" class="btn-secondary">
+                <i class="fa-solid fa-share-nodes"></i> Bagikan Web Ini
+            </button>
+            <p class="footer-text" style="margin-top: 20px;">Dibuat oleh CAHYO anak pintar, baik, dan tidak sombong,KAMSIA.</p>
+        </div>
+
+    </div> <!-- End of mobile-container -->
+
+    <!-- LIGHTBOX POPUP -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightboxImg" src="" alt="Zoom Foto">
+    </div>
+
+    <!-- MODAL SPECIAL MESSAGE -->
+    <div id="wishModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close-modal">&times;</span>
+            <h2>Pesan Spesial</h2>
+            <p style="margin-top: 15px; text-align: justify; font-size: 13px; line-height: 1.6; color: #e0d0b0;">
+                "Selamat ulang tahun. Semoga momentum bertambahnya usia ini menjadi awal yang baik untuk pencapaian-pencapaian baru yang lebih gemilang. Semoga kesehatan dan kesejahteraan selalu menyertai Anda dan keluarga."
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP KEJUTAN DYNAMIC -->
+    <div id="surpriseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSurpriseModal()">&times;</span>
+            <h2 id="surpriseTitle"> Kejutan Spesial!</h2>
+            <div id="surpriseText" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP COUNTDOWN EXIT -->
+    <div id="exitModal" class="modal">
+        <div class="modal-content exit-modal-content">
+            <div class="exit-icon">🚪</div>
+            <h2 style="color: #d4af37;">Terima Kasih!</h2>
+            <p style="margin-top: 10px; font-size: 13px; color: #e0d0b0;">
+                Halaman web akan otomatis keluar dalam:
+            </p>
+            <div class="countdown-circle">
+                <span id="exitCountdown">5</span>
+            </div>
+            <p class="exit-subtext">Sampai jumpa Botii! </p>
+        </div>
+    </div>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
